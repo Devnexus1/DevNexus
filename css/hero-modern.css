@@ -1,0 +1,233 @@
+/* =========================================================
+   DEVNEXUS - HERO MODERN
+   فقط بخش هیرو را مدرن می‌کند. بعد از rtl.css لینک شود.
+========================================================= */
+
+/* ---------- Background depth: dot grid + cursor glow ---------- */
+
+.hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(
+        520px circle at var(--hx, 28%) var(--hy, 42%),
+        rgba(36, 107, 255, 0.18),
+        transparent 65%
+    );
+    transition: background-position 0.2s ease;
+}
+
+.hero::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(120, 160, 255, 0.22) 1px, transparent 1.4px);
+    background-size: 28px 28px;
+    -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 60%);
+            mask-image: linear-gradient(90deg, #000 0%, transparent 60%);
+}
+
+html[dir="rtl"] .hero::after{
+    -webkit-mask-image: linear-gradient(270deg, #000 0%, transparent 60%);
+            mask-image: linear-gradient(270deg, #000 0%, transparent 60%);
+}
+
+/* ---------- Badge with a live status dot ---------- */
+
+.hero-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px 8px 14px;
+    border-color: rgba(36, 107, 255, 0.45);
+    background: rgba(36, 107, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-badge::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22d36b;
+    box-shadow: 0 0 0 0 rgba(34, 211, 107, 0.6);
+    animation: heroPulse 2.2s ease-out infinite;
+}
+
+@keyframes heroPulse{
+    70%{ box-shadow: 0 0 0 9px rgba(34, 211, 107, 0); }
+    100%{ box-shadow: 0 0 0 0 rgba(34, 211, 107, 0); }
+}
+
+/* ---------- Headline ---------- */
+
+html[dir="ltr"] body .hero .hero-text h1{
+    font-size: clamp(40px, 6.2vw, 78px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+html[dir="ltr"] body .hero .hero-text h2{
+    font-size: clamp(22px, 2.6vw, 34px);
+    letter-spacing: -0.01em;
+}
+
+.emad,
+.web{
+    background: linear-gradient(100deg, #1597ff 0%, #6a7bff 45%, #a06bff 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-shadow: none;
+    animation: heroGradient 7s ease-in-out infinite alternate;
+}
+
+@keyframes heroGradient{
+    to{ background-position: 100% 0; }
+}
+
+/* ---------- Buttons ---------- */
+
+.hero-buttons .btn-primary{
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background: linear-gradient(135deg, #1597ff, #6a5cff);
+    box-shadow: 0 12px 30px rgba(36, 107, 255, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-buttons .btn-primary::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.hero-buttons .btn-primary:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(36, 107, 255, 0.5);
+}
+
+.hero-buttons .btn-primary:hover::after{
+    left: 130%;
+}
+
+.hero-buttons .btn-secondary{
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-buttons .btn-secondary:hover{
+    border-color: #1597ff;
+    background: rgba(21, 151, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+/* ---------- Tech stack as pills ---------- */
+
+.hero .tech-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hero .tech-item{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 10px;
+    border: 1px solid rgba(120, 160, 255, 0.2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.hero .tech-item img{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.hero .tech-item span{
+    margin: 0;
+    font-size: 12px;
+    text-transform: none;
+}
+
+.hero .tech-item:hover{
+    transform: translateY(-3px);
+    border-color: #1597ff;
+    background: rgba(21, 151, 255, 0.1);
+}
+
+/* ---------- Code editor: lines type in once, caret blinks ---------- */
+
+.code-editor{
+    border-color: rgba(36, 107, 255, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.editor-code > div{
+    opacity: 0;
+    animation: codeLine 0.5s ease forwards;
+}
+
+.editor-code > div:nth-child(1){ animation-delay: 0.6s; }
+.editor-code > div:nth-child(2){ animation-delay: 1.0s; }
+.editor-code > div:nth-child(3){ animation-delay: 1.4s; }
+.editor-code > div:nth-child(4){ animation-delay: 1.8s; }
+.editor-code > div:nth-child(5){ animation-delay: 2.2s; }
+
+@keyframes codeLine{
+    from{ opacity: 0; transform: translateX(-8px); }
+    to{ opacity: 1; transform: none; }
+}
+
+.editor-code > div:last-child::after{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    margin-left: 6px;
+    vertical-align: -2px;
+    background: #1597ff;
+    animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret{
+    50%{ opacity: 0; }
+}
+
+/* ---------- Social dock ---------- */
+
+.social-links{
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .emad, .web, .hero-badge::before, .editor-code > div,
+    .editor-code > div:last-child::after{
+        animation: none;
+        opacity: 1;
+    }
+}

@@ -1,0 +1,53 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'resume' %}
+{% block title %}رزومه (CV){% endblock %}
+{% block page_title %}رزومه (CV){% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>آپلود CV جدید</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ ui.csrf() }}
+        <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+        <p class="hint">PDF / DOC / DOCX، حداکثر ۸ مگابایت. CV جدید به‌طور خودکار فعال می‌شود و دکمه‌ی «دانلود رزومه» سایت همین فایل را می‌دهد.</p>
+        <button type="submit" class="btn btn-primary" style="margin-top:14px">آپلود و فعال‌سازی</button>
+    </form>
+</div>
+
+<div class="card table-wrap">
+    <h2>CV های موجود</h2>
+    {% if resumes %}
+    <table>
+        <thead><tr><th>نام فایل</th><th>تاریخ آپلود</th><th>وضعیت</th><th></th></tr></thead>
+        <tbody>
+        {% for r in resumes %}
+            <tr>
+                <td dir="ltr" style="text-align:right">{{ r.original_filename }}</td>
+                <td dir="ltr" style="text-align:right">{{ r.uploaded_at|dt }}</td>
+                <td><span class="pill {{ 'ok' if r.is_active else 'off' }}">{{ 'فعال' if r.is_active else 'غیرفعال' }}</span></td>
+                <td>
+                    <div class="actions">
+                        <a class="btn btn-sm" href="{{ url_for('resume.admin_download_resume', resume_id=r.id) }}">دانلود</a>
+                        {% if not r.is_active %}
+                        <form class="inline-form" method="POST" action="{{ url_for('resume.activate_resume', resume_id=r.id) }}">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm" type="submit">فعال کن</button>
+                        </form>
+                        {% endif %}
+                        <form class="inline-form" method="POST" action="{{ url_for('resume.delete_resume', resume_id=r.id) }}"
+                              onsubmit="return confirm('{{ 'این CV فعال است؛ با حذفش دکمه‌ی دانلود رزومه در سایت مخفی می‌شود. حذف شود؟' if r.is_active else 'این CV حذف شود؟' }}');">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm btn-danger" type="submit">حذف</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="empty">هنوز CV ای آپلود نشده است.</div>
+    {% endif %}
+</div>
+{% endblock %}

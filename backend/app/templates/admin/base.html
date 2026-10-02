@@ -1,0 +1,50 @@
+{% import 'admin/_macros.html' as ui %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{% block title %}پنل مدیریت{% endblock %} - Dev Nexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+<div class="admin-layout">
+
+    <aside class="sidebar">
+        <div class="brand"><code>&lt;/&gt;</code>Dev <span>Nexus</span></div>
+
+        <nav class="nav">
+            <a href="{{ url_for('admin.dashboard') }}" class="{{ 'active' if active == 'dashboard' }}">داشبورد</a>
+            <a href="{{ url_for('projects.projects') }}" class="{{ 'active' if active == 'projects' }}">پروژه‌ها</a>
+            <a href="{{ url_for('messages.messages') }}" class="{{ 'active' if active == 'messages' }}">
+                <span>پیام‌ها</span>
+                {% if unread_count %}<span class="badge">{{ unread_count }}</span>{% endif %}
+            </a>
+            <a href="{{ url_for('resume.resume') }}" class="{{ 'active' if active == 'resume' }}">رزومه (CV)</a>
+            <a href="{{ url_for('admin.change_password') }}" class="{{ 'active' if active == 'password' }}">تغییر رمز</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a class="view-site" href="{{ url_for('frontend.home') }}" target="_blank" rel="noopener">مشاهده سایت ↗</a>
+            <form method="POST" action="{{ url_for('auth.logout') }}">
+                {{ ui.csrf() }}
+                <button type="submit" class="btn btn-danger" style="width:100%">خروج</button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="main">
+        <div class="page-head">
+            <h1>{% block page_title %}{% endblock %}</h1>
+            <div class="actions">{% block head_actions %}{% endblock %}</div>
+        </div>
+
+        {{ ui.flashes() }}
+
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+</body>
+</html>

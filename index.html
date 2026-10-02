@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" data-theme="dark">
+
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="DevNexus is the portfolio of Emad Nourbakhsh, a full stack developer building modern, responsive websites and web applications with Python, Flask and Django.">
+        <meta name="theme-color" content="#050811">
+        <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050811'/%3E%3Ctext x='32' y='42' font-size='30' font-family='monospace' font-weight='700' fill='%231597ff' text-anchor='middle'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+        
+        <title>DevNexus | Full Stack Developer</title>
+
+        <script>
+            /* Apply saved theme/language before first paint (prevents a flash) */
+            (function () {
+                try {
+                    var root = document.documentElement;
+                    if (localStorage.getItem("devnexusTheme") === "light") {
+                        root.setAttribute("data-theme", "light");
+                    }
+                    if (localStorage.getItem("devnexusLang") === "fa") {
+                        root.setAttribute("lang", "fa");
+                        root.setAttribute("dir", "rtl");
+                    }
+                } catch (error) {}
+            })();
+        </script>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/language.css">
+        <link rel="stylesheet" href="css/responsive-fix.css">
+        <link rel="stylesheet" href="css/light-theme.css">
+        <link rel="stylesheet" href="css/rtl.css">
+        <link rel="stylesheet" href="css/hero-modern.css">
+        <link rel="stylesheet" href="css/projects-modern.css">
+        <link rel="stylesheet" href="css/sections-modern.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        
+    </head>
+    
+    <body>
+
+        <div class="devnexus-loader" id="devnexus-loader">
+            <div class="loader-content">
+                <div class="loader-number" id="loader-number">
+                    1
+                </div>
+                <div class="loader-progress">
+                    <div class="loader-progress-bar" id="loader-progress-bar"></div>
+                </div>
+                <div class="loader-logo">
+                    <span>Dev</span><strong>Nexus</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="loader-curtain" id="loader-curtain"></div>
+
+        <header class="navbar">
+
+                <!-- navbar -->
+            
+
+                <div class="container navbar-content">
+
+                    <a href="#home" class="logo">
+
+                        <span class="logo-icon">&lt;/&gt;</span>
+
+                        <span class="logo-text">
+                            <span class="dev">Dev</span><span class="nexus">Nexus</span>
+                        </span>
+
+                    </a> 
+
+                        <nav class="nav-menu">
+
+                            <a data-i18n="nav.home" href="#home" class="active">Home</a>
+
+                            <a data-i18n="nav.about" href="#about">About</a>
+
+                            <a data-i18n="nav.services" href="#services">Services</a>
+
+                            <a data-i18n="nav.projects" href="#projects">Projects</a>
+
+                            <a data-i18n="nav.skills" href="#skills">Skills</a>
+
+                            <a data-i18n="nav.experience" href="#experience">Experience</a>
+
+                            <a data-i18n="nav.contact" href="#contact">Contact</a>
+
+                            <a data-i18n="nav.talk" href="https://t.me/iw_emad" class="mobile-talk">
+                                Let's Talk
+                            </a>
+
+                        </nav>
+                    
+                        <div class="nav-actions">
+
+                            <div class="nav-tools">
+
+                                <!-- Language: English <-> Persian -->
+                                <button
+                                    class="nav-tool lang-toggle"
+                                    id="lang-toggle"
+                                    type="button"
+                                    aria-label="Switch language to Persian"
+                                    title="فارسی"
+                                >
+                                    <span class="lang-toggle-text">فارسی</span>
+                                </button>
+
+                                <!-- Theme: dark <-> light -->
+                                <button
+                                    class="nav-tool theme-toggle"
+                                    id="theme-toggle"
+                                    type="button"
+                                    aria-label="Switch to light theme"
+                                    title="Light theme"
+                                >
+                                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                                    </svg>
+                                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <a data-i18n="nav.talk" href="https://t.me/iw_emad" class="nav-button">
+                                Let's Talk
+                            </a>
+
+                        </div>
+
+                        <button
+                            class="mobile-menu-toggle"
+                            type="button"
+                            aria-label="Open navigation menu"
+                            aria-expanded="false"
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+
+                </div>
+
+        </header>
+        
+
+        <main>
+            <section class="hero" id="home">
+                <img 
+                src="image/hero.webp"
+                alt="Developer workspace"
+                class="hero-bg"
+                fetchpriority="high"
+                decoding="async"
+                >
+                <div class="hero-overlay"></div>
+                <div class="container hero-contact">
+
+                    <div class="hero-text">
+
+                        <span data-i18n="hero.badge" class="hero-badge">
+                            Code / Secure / Innovate
+                        </span>
+                        <h1 data-i18n-html="hero.title">Hi, I'm <span class="emad"> Emad </span> </h1>
+                        
+                        <h2 data-i18n-html="hero.subtitle">I Build Modern <span class="web">Web Solutions </span> </h2>
+
+                        <p data-i18n="hero.text">
+                            A passionate full-stack developer who loves turning
+                            ideas into real digital products. I specialize in
+                            creating fast, responsive and user-friendly websites
+                            and web applications.
+                        </p>
+                        <div class="hero-buttons">
+                            <a data-i18n="hero.viewProjects" href="#projects" class="btn-primary">
+                             View My Projects
+                            </a>
+                            <a data-i18n="hero.contactMe" href="#contact" class="btn-secondary">
+                             Contact Me
+                            </a>
+                        </div>
+                        <div class="tech-row">
+
+                            <div class="tech-item">
+
+                                    <img src="image/icons/html.png" alt="HTML">
+                                    <span> HTML </span>
+
+                            </div>
+                            <div class="tech-item">
+
+                                    <img src="image/icons/css.png" alt="CSS">
+                                    <span> CSS </span>
+
+                            </div>
+                            <div class="tech-item">
+
+                                    <img src="image/icons/python.png" alt="Python">
+                                    <span> PYTHON </span>
+
+                            </div>
+                            <div class="tech-item">
+
+                                    <img src="image/icons/javascript.png" alt="JavaScript">
+                                    <span> JavaScript </span>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                        <div class="code-editor">
+                            <div class="editor-header">
+                                <div class="window-buttons">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <span class="file-name">
+                                    developer.js
+                                </span>
+                            </div>
+                            <div class="editor-code">
+                                <div>
+                                    <span class="code-keyword">const</span>
+                                        developer = {
+                                </div>
+                                <div class="code-line">
+                                    name: 
+                                    <span class="code-string">"Emad Nourbakhsh"</span>,
+                                </div>
+                                <div class="code-line">
+                                    role: 
+                                    <span class="code-string">"Full Stack Developer"</span>,
+                                </div>
+                                <div class="code-line">
+                                    passion: 
+                                    <span class="code-string">
+                                        "Building Amazing Web Experiences"
+                                    </span>
+                                </div>
+                                <div>};</div>
+                            </div>
+                        </div>
+                <div class="social-links">
+
+                            <a href="https://github.com/Devnexus1" target="_blank" rel="noopener noreferrer">
+                                <img src="image/social/github.png" alt="GitHub">
+                            </a>
+
+                            <a href="https://www.instagram.com/devnexus1/" target="_blank" rel="noopener noreferrer">
+                                <img src="image/social/instagram.png" alt="Instagram">
+                            </a>
+
+                            <a href="https://t.me/iw_emad" target="_blank" rel="noopener noreferrer">
+                                <img src="image/social/telegram.png" alt="Telegram">
+                            </a>
+
+                    </div>
+                    </div>
+                <div class="scroll-down">
+                        <div class="mouse">
+                                <span></span>
+                        </div>
+                            <p data-i18n="scroll.down">Scroll Down</p>
+                    </div>
+            </section>
+            <div class="section-divider"></div>
+            <section>
+                <div class="about" id="about">
+                    <div class="container">
+                        <div class="section-title">
+                            <span data-i18n="about.tag">ABOUT ME</span>
+                            <h2 data-i18n="about.title">Get To Know Me</h2>
+                            <p data-i18n="about.subtitle">
+                                A little bit about who I am and what I do.
+                            </p>
+                        </div>
+
+                        <div class="about-content">
+                                <div class="about-image">
+                                    <div class="image-box">
+                                        <img loading="lazy" decoding="async" src="image/about.png" alt="Emad Nourbakhsh">
+                                    </div>
+                                </div>
+                                <div class="about-text">
+                                    <span data-i18n="about.who" class="about-label">WHO AM I?</span>
+                                    
+                                    <p data-i18n="about.p1">
+                                        I'm a passionate developer who enjoys creating modern,
+                                        responsive and user-friendly websites and web applications.
+                                    </p>
+                                    <p data-i18n="about.p2">
+                                        I love learning new technologies, solving problems and
+                                        turning creative ideas into real digital experiences.
+                                    </p>
+                                    <div class="about-info">
+                                        <div>
+                                            <strong data-i18n="about.name">Name:</strong>
+                                            <span id="name-text"></span>
+                                        </div>
+                                        <div>
+                                            <strong data-i18n="about.role">Role:</strong>
+                                            <span id="role-text"></span>
+                                        </div>
+                                    </div>
+                                    <div class="about-actions">
+                                        <div class="about-stats">
+                                            <div class="stats-card">
+                                                <span data-i18n="about.stat1" class="stats-number">1+</span>
+                                                <span data-i18n="about.stat1.label" class="stats-title">Years Learning</span>
+                                            </div>
+                                            <div class="stats-card">
+                                                <span data-i18n="about.stat2" class="stats-number">2+</span>
+                                                <span data-i18n="about.stat2.label" class="stats-title">Projects</span>
+                                            </div>
+                                            <div class="stats-card">
+                                                <span data-i18n="about.stat3" class="stats-number">4+</span>
+                                                <span data-i18n="about.stat3.label" class="stats-title">Technologies</span>
+                                            </div>
+                                        </div>
+
+                                        <a data-i18n="about.cv" id="cv-button" href="/resume/download" class="about-button">
+                                            Download CV
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                    </div>
+                </div>
+            </section>
+            <div class="section-divider"></div>
+            <section class="services" id="services">
+                <div class="container">
+
+                    <div class="section-title">
+                        <span data-i18n="services.tag">MY SERVICES</span>
+                        <h2 data-i18n="services.title">What I Do</h2>
+                        <p data-i18n="services.subtitle">Services I provide for building modern digital experiences</p>
+                    </div>
+                    <div class="services-showcase">
+                        <img loading="lazy" decoding="async" src="image/services-3d.png"
+                        alt="Developer Workspace"
+                        class="services-3d-image">
+                    </div>
+                    <div class="services-grid">
+
+                        <div class="services-card">
+                            <div class="services-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/web.png" alt="Web development icon">
+                            </div>
+                            <h3 data-i18n="services.web.title">Web Developer</h3>
+
+                            <p data-i18n="services.web.text">
+                                Building modern, responsive and user-friendly websites
+                                with clean and efficient code.
+                            </p>
+                            <div class="services-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                        </div>
+                        <div class="services-card">
+                            <div class="services-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/back.png" alt="Backend development icon">
+                            </div>
+                            <h3 data-i18n="services.back.title">Backend Development</h3>
+                            <p data-i18n="services.back.text">
+                                Developing powerful backend systems, APIs and
+                                database-driven applications
+                            </p>
+                            <div class="services-tags"><span>Python</span><span>Flask</span><span>Django</span><span>REST</span></div>
+                        </div>
+                        <div class="services-card">
+                            <div class="services-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/front.png" alt="Frontend development icon">
+                            </div>
+                            <h3 data-i18n="services.front.title">Frontend Development</h3>
+                            <p data-i18n="services.front.text">
+                                Creating attractive and responsive interfaces with
+                                modern frontend technologies
+                            </p>
+                            <div class="services-tags"><span>Responsive</span><span>UI/UX</span><span>JavaScript</span></div>
+                        </div>
+                        <div class="services-card">
+                            <div class="services-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/data.png" alt="Database design icon">
+                            </div>
+                            <h3 data-i18n="services.db.title">Database Design</h3>
+                            <p data-i18n="services.db.text">
+                                Designing structured and reliable databases for
+                                secure and efficient applications.
+                            </p>
+                            <div class="services-tags"><span>MySQL</span><span>SQL</span><span>Design</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <div class="section-divider"></div>
+            <section class="projects" id="projects">
+                <div class="container">
+                    <div class="section-title">
+                        <span data-i18n="projects.tag">MY PROJECTS</span>
+                        <h2 data-i18n="projects.title">Featured Work</h2>
+                        <p data-i18n="projects.subtitle">
+                            A collection of projects I've built using modern
+                            technologies and creative solutions.
+                        </p>
+                    </div>
+                    <div class="projects-carousel">
+                        <button class="project-arrow project-prev" type="button">
+                            ‹
+                        </button>
+                        <div class="projects-track">
+                            <!--
+                                Project cards will be generated dynamically
+                                from Admin Panel / Database.
+                            -->
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div data-i18n="projects.image" class="project-image-placeholder">
+                                        Project Image
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h3 data-i18n="projects.name">Project Name</h3>
+                                    <p data-i18n="projects.desc">
+                                        Project description will come from the Admin Panel.
+                                    </p>
+                                    <div class="project-technologies">
+                                        <!-- Technologies will come from database -->
+                                    </div>
+                                    <a data-i18n-html="projects.details" href="project-detail.html" class="project-button">
+                                        View Details
+                                        <span>→</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="project-arrow project-next" type="button">
+                            ›
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <div class="section-divider"></div>
+            <section class="skills" id="skills">
+
+                <div class="container">
+
+                    <div class="section-title">
+
+                        <span data-i18n="skills.tag">MY SKILLS</span>
+
+                        <h2 data-i18n="skills.title">Technical Expertise</h2>
+
+                        <p data-i18n="skills.subtitle">
+                            Technologies and tools I use to build modern,
+                            scalable and creative digital experiences.
+                        </p>
+
+                    </div>
+
+
+                    <div class="skills-grid">
+
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/html.png" alt="HTML">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>HTML</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="90"></span>
+                                </div>
+
+                                <small data-i18n="skills.frontend">Frontend</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/css.png" alt="CSS">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>CSS</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="90"></span>
+                                </div>
+
+                                <small data-i18n="skills.frontend">Frontend</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/javascript.png" alt="JavaScript">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>JavaScript</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="40"></span>
+                                </div>
+
+                                <small data-i18n="skills.frontend">Frontend</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/python.png" alt="Python">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>Python</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="85"></span>
+                                </div>
+
+                                <small data-i18n="skills.backend">Backend</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/django.png" alt="django">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>Django</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="80"></span>
+                                </div>
+
+                                <small data-i18n="skills.backend">Backend</small>
+                            </div>
+
+                        </div>
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/flask.png" alt="Flask">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>Flask</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="70"></span>
+                                </div>
+
+                                <small data-i18n="skills.backend">Backend</small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Skill -->
+                        <div class="skill-card">
+
+                            <div class="skill-icon">
+                                <img loading="lazy" decoding="async" src="image/icons/mysql.png" alt="MySQL">
+                            </div>
+
+                            <div class="skill-info">
+
+                                <div class="skill-top">
+                                    <h3>MySQL</h3>
+                                    <span>0%</span>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <span data-level="70"></span>
+                                </div>
+
+                                <small data-i18n="skills.database">Database</small>
+
+                            </div>
+                            
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+
+            </section>
+            <div class="section-divider"></div>
+            <section class="experience" id="experience">
+                <div class="container">
+                    <div class="section-title">
+                        <span data-i18n="experience.tag">MY EXPERIENCE</span>
+                        <h2 data-i18n="experience.title">My Journey</h2>
+                        <p data-i18n="experience.subtitle">
+                            My learning journey, technical growth and experience
+                            in building modern digital solutions.
+                        </p>
+                    </div>
+                    <div class="experience-timeline">
+                        <!-- Experience 1 -->
+                        <div class="experience-item">
+                            <div class="experience-dot"></div>
+                            <div class="experience-card">
+                                <span data-i18n="exp1.date" class="experience-date">
+                                    2025 - Present
+                                </span>
+                                <h3 data-i18n="exp1.title">Full Stack Developer</h3>
+                                <h4>DevNexus</h4>
+                                <p data-i18n="exp1.text">
+                                    Developing modern and responsive web applications,
+                                    working with frontend and backend technologies,
+                                    databases and modern development tools.
+                                </p>
+                                <div class="experience-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                    <span>Python</span>
+                                    <span>Flask</span>
+                                    <span>Django</span>                                    
+                                    <span>MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Experience 2 -->
+                        <div class="experience-item">
+                            <div class="experience-dot"></div>
+                            <div class="experience-card">
+                                <span data-i18n="exp2.date" class="experience-date">
+                                    2024 - 2025
+                                </span>
+                                <h3 data-i18n="exp2.title">Web Development Learning</h3>
+                                <h4 data-i18n="exp2.place">Personal Development</h4>
+                                <p data-i18n="exp2.text">
+                                    Learning web development fundamentals and building
+                                    practical projects to improve programming,
+                                    problem-solving and web design skills.
+                                </p>
+                                <div class="experience-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                    <span>Python</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Experience 3 -->
+                        <div class="experience-item">
+                            <div class="experience-dot"></div>
+                            <div class="experience-card">
+                                <span data-i18n="exp3.date" class="experience-date">
+                                    2023 - 2024
+                                </span>
+                                <h3 data-i18n="exp3.title">Programming Foundations</h3>
+                                <h4 data-i18n="exp3.place">Computer Software</h4>
+                                <p data-i18n="exp3.text">
+                                    Building programming fundamentals and gaining
+                                    experience with algorithms, databases and
+                                    software development concepts.
+                                </p>
+                                <div class="experience-tech">
+                                    <span>C#</span>
+                                    <span>SQL</span>
+                                    <span>Programming</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="section-divider"></div>
+            <section class="contact" id="contact">
+
+                <div class="container">
+
+                    <div class="section-title">
+                        <span data-i18n="contact.tag">GET IN TOUCH</span>
+                        <h2 data-i18n="contact.title">Let's Work Together</h2>
+                        <p data-i18n="contact.subtitle">
+                            Have a project in mind? Send me a message and let's
+                            turn your idea into a real digital experience.
+                        </p>
+                    </div>
+
+                    <div class="contact-content">
+                        <div class="contact-info">
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <img loading="lazy" decoding="async" src="image/icons/email.png" alt="Email">
+                                </div>
+
+                                <div>
+                                    <span data-i18n="contact.email">Email</span>
+                                    <p>devnexusinc@gmail.com</p>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <img loading="lazy" decoding="async" src="image/icons/phone.png" alt="phone">
+                                </div>
+
+                                <div>
+                                    <span data-i18n="contact.phone">Phone</span>
+                                    <p>+98 936 182 5730</p>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <img loading="lazy" decoding="async" src="image/icons/location.png" alt="location">
+                                </div>
+
+                                <div>
+                                    <span data-i18n="contact.location">Location</span>
+                                    <p data-i18n="contact.locationValue">Isfahan, Iran</p>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">
+                                    <img loading="lazy" decoding="async" src="image/icons/social.png" alt="social">
+                                </div>
+
+                                <div>
+                                    <span data-i18n="contact.social">Social Media</span>
+
+                                    <p class="contact-socials">
+                                        <a href="https://github.com/Devnexus1" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                        <span>|</span>
+                                        <a href="https://www.instagram.com/devnexus1/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                        <span>|</span>
+                                        <a href="https://t.me/iw_emad" target="_blank" rel="noopener noreferrer">Telegram</a>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="contact-message">
+
+                                <img loading="lazy" decoding="async" 
+                                src="image/contact.png"
+                                alt="Let's build something amazing">
+
+                            </div>
+
+                        </div>
+                        <div class="contact-form-wrapper">
+
+                            <form class="contact-form" id="contact-form" action="/api/contact" method="post">
+
+                                <div class="form-group">
+                                    <label data-i18n-html="form.name" for="contact-name">
+                                        Your Name <span>*</span>
+                                    </label>
+
+                                    <input data-i18n-placeholder="form.name.ph"
+                                        type="text"
+                                        id="contact-name"
+                                        name="name"
+                                        autocomplete="name"
+                                        placeholder="Enter your name"
+                                        required
+                                    >
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label data-i18n-html="form.email" for="contact-email">
+                                        Your Email <span>*</span>
+                                    </label>
+
+                                    <input data-i18n-placeholder="form.email.ph"
+                                        type="email"
+                                        id="contact-email"
+                                        name="email"
+                                        autocomplete="email"
+                                        placeholder="Enter your email"
+                                        required
+                                    >
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label data-i18n-html="form.phone" for="contact-phone">
+                                        Your Phone <span>*</span>
+                                    </label>
+
+                                    <input data-i18n-placeholder="form.phone.ph"
+                                        type="tel"
+                                        id="contact-phone"
+                                        name="phone"
+                                        autocomplete="tel"
+                                        placeholder="Enter your phone number"
+                                        required
+                                    >
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label data-i18n="form.type" for="project-type">
+                                        Project Type
+                                    </label>
+
+                                    <select
+                                        id="project-type"
+                                        name="project_type"
+                                    >
+                                        <option data-i18n="form.type.select" value="" selected disabled>
+                                            Select project type
+                                        </option>
+
+                                        <option data-i18n="form.type.website" value="website">
+                                            Website Development
+                                        </option>
+
+                                        <option data-i18n="form.type.webapp" value="web-application">
+                                            Web Application
+                                        </option>
+
+                                        <option data-i18n="form.type.frontend" value="frontend">
+                                            Frontend Development
+                                        </option>
+
+                                        <option data-i18n="form.type.backend" value="backend">
+                                            Backend Development
+                                        </option>
+
+                                        <option data-i18n="form.type.database" value="database">
+                                            Database Design
+                                        </option>
+
+                                        <option data-i18n="form.type.other" value="other">
+                                            Other
+                                        </option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label data-i18n-html="form.message" for="contact-message">
+                                        Your Message <span>*</span>
+                                    </label>
+
+                                    <textarea data-i18n-placeholder="form.message.ph"
+                                        id="contact-message"
+                                        name="message"
+                                        rows="5"
+                                        placeholder="Tell me about your project..."
+                                        required
+                                    ></textarea>
+                                </div>
+
+
+                                <!-- Spam trap: real visitors never see or fill this field -->
+                                <div class="hp-field" aria-hidden="true">
+                                    <label for="contact-website">Website</label>
+                                    <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off">
+                                </div>
+
+                                <button data-i18n-html="form.send"
+                                    type="submit"
+                                    class="contact-submit"
+                                >
+                                    Send Message
+                                    <span>→</span>
+                                </button>
+
+                                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+                            </form>
+
+
+                            <p data-i18n="contact.note" class="contact-note">
+                                Once you send your message, I'll review your request
+                                and get back to you soon via email or phone.
+                                Let's build something great together.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+        <footer class="devnexus-footer">
+
+            <div class="container footer-container">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+
+                    <a href="#home" class="footer-logo">
+                        <span>&lt;/&gt;</span>
+                        <strong>DevNexus</strong>
+                    </a>
+
+                    <p data-i18n="footer.about">
+                        Building modern, responsive and creative web experiences
+                        with clean code and innovative solutions.
+                    </p>
+
+                </div>
+
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+
+                    <h3 data-i18n="footer.links">Quick Links</h3>
+
+                    <a data-i18n="nav.home" href="#home">Home</a>
+                    <a data-i18n="nav.about" href="#about">About</a>
+                    <a data-i18n="nav.services" href="#services">Services</a>
+                    <a data-i18n="nav.projects" href="#projects">Projects</a>
+                    <a data-i18n="nav.skills" href="#skills">Skills</a>
+                    <a data-i18n="nav.experience" href="#experience">Experience</a>
+                    <a data-i18n="nav.contact" href="#contact">Contact</a>
+
+                </div>
+
+
+                <!-- Connect -->
+                <div class="footer-social">
+
+                    <h3 data-i18n="footer.connect">Connect With Me</h3>
+
+                    <p data-i18n="footer.follow">
+                        Follow me and let's build something amazing.
+                    </p>
+
+                    <div class="footer-social-links">
+
+                        <a
+                            href="https://github.com/Devnexus1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub"
+                        >
+                            <img loading="lazy" decoding="async" src="image/social/github.png" alt="GitHub">
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/devnexus1/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                        >
+                            <img loading="lazy" decoding="async" src="image/social/instagram.png" alt="Instagram">
+                        </a>
+
+                        <a
+                            href="https://t.me/iw_emad"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Telegram"
+                        >
+                            <img loading="lazy" decoding="async" src="image/social/telegram.png" alt="Telegram">
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Bottom -->
+            <div class="footer-bottom">
+
+                <div class="container footer-bottom-content">
+
+                    <p data-i18n="footer.rights">
+                        © 2026 DevNexus. All rights reserved.
+                    </p>
+
+                    <span data-i18n="footer.tagline">
+                        Code • Create • Innovate
+                    </span>
+
+                </div>
+
+            </div>
+
+        </footer>
+      <script src="js/language.js"></script>
+      <script src="js/script.js"></script>
+      <script src="js/projects-loader.js"></script>
+    </body>
+
+</html>

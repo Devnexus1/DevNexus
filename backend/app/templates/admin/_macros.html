@@ -1,0 +1,23 @@
+{% macro csrf() -%}
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+{%- endmacro %}
+
+{% macro flashes() -%}
+{% with items = get_flashed_messages(with_categories=true) %}
+  {% if items %}
+  <div class="flash-list">
+    {% for category, message in items %}
+      <div class="flash {{ 'success' if category == 'success' else 'error' }}">{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+{% endwith %}
+{%- endmacro %}
+
+{% macro status_pill(status) -%}
+  {% if status == 'new' %}<span class="pill info">جدید</span>
+  {% elif status == 'read' %}<span class="pill off">خوانده‌شده</span>
+  {% elif status == 'replied' %}<span class="pill ok">پاسخ داده شد</span>
+  {% elif status == 'archived' %}<span class="pill warn">آرشیو</span>
+  {% else %}<span class="pill off">{{ status }}</span>{% endif %}
+{%- endmacro %}

@@ -1,0 +1,66 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'projects' %}
+{% block title %}پروژه‌ها{% endblock %}
+{% block page_title %}پروژه‌ها{% endblock %}
+{% block head_actions %}
+    <a class="btn btn-primary" href="{{ url_for('projects.new_project') }}">پروژه‌ی جدید +</a>
+{% endblock %}
+
+{% block content %}
+<div class="card table-wrap">
+    {% if projects %}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>عنوان</th>
+                <th>وضعیت</th>
+                <th>ترتیب</th>
+                <th>تصاویر</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for p in projects %}
+            <tr>
+                <td>
+                    {% if p.cover %}
+                        <img class="thumb" src="{{ url_for('api.project_image', filename=p.cover.filename) }}" alt="">
+                    {% else %}
+                        <span class="thumb"></span>
+                    {% endif %}
+                </td>
+                <td class="title-cell">
+                    <a href="{{ url_for('projects.edit_project', project_id=p.id) }}">{{ p.title_fa or p.title_en }}</a>
+                    {% if p.title_fa %}<small>{{ p.title_en }}</small>{% endif %}
+                </td>
+                <td><span class="pill {{ 'ok' if p.is_published else 'off' }}">{{ 'منتشرشده' if p.is_published else 'مخفی' }}</span></td>
+                <td>{{ p.display_order }}</td>
+                <td>{{ p.images|length }}</td>
+                <td>
+                    <div class="actions">
+                        <a class="btn btn-sm" href="{{ url_for('projects.edit_project', project_id=p.id) }}">ویرایش</a>
+                        {% if p.is_published %}
+                        <a class="btn btn-sm" target="_blank" rel="noopener" href="{{ url_for('frontend.project_detail') }}?id={{ p.id }}">نمایش</a>
+                        {% endif %}
+                        <form class="inline-form" method="POST" action="{{ url_for('projects.toggle_publish', project_id=p.id) }}">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm" type="submit">{{ 'مخفی کن' if p.is_published else 'منتشر کن' }}</button>
+                        </form>
+                        <form class="inline-form" method="POST" action="{{ url_for('projects.delete_project', project_id=p.id) }}"
+                              onsubmit="return confirm('این پروژه و همه‌ی تصاویرش برای همیشه حذف شود؟');">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm btn-danger" type="submit">حذف</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="empty">هنوز پروژه‌ای ثبت نشده است. با دکمه‌ی «پروژه‌ی جدید» شروع کن.</div>
+    {% endif %}
+</div>
+{% endblock %}

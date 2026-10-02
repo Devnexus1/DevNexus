@@ -1,0 +1,58 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'messages' %}
+{% block title %}پیام‌ها{% endblock %}
+{% block page_title %}پیام‌ها{% endblock %}
+
+{% block content %}
+<div class="actions" style="margin-bottom:16px">
+    {% for key, label in [('all', 'همه'), ('unread', 'خوانده‌نشده'), ('replied', 'پاسخ داده‌شده'), ('archived', 'آرشیو')] %}
+        <a class="btn btn-sm {{ 'btn-primary' if current_filter == key }}" href="{{ url_for('messages.messages', filter=key) }}">{{ label }}</a>
+    {% endfor %}
+</div>
+
+<div class="card table-wrap">
+    {% if messages %}
+    <table>
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>تماس</th>
+                <th>نوع پروژه</th>
+                <th>زمان</th>
+                <th>وضعیت</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for m in messages %}
+            <tr class="{{ 'unread' if not m.is_read }}">
+                <td class="name"><a href="{{ url_for('messages.message_detail', message_id=m.id) }}">{{ m.name }}</a></td>
+                <td dir="ltr" style="text-align:right">{{ m.email }}<br><small style="color:var(--muted)">{{ m.phone or '' }}</small></td>
+                <td>{{ m.project_type|project_type }}</td>
+                <td dir="ltr" style="text-align:right">{{ m.created_at|dt }}</td>
+                <td>{{ ui.status_pill(m.status) }}</td>
+                <td>
+                    <div class="actions">
+                        <a class="btn btn-sm" href="{{ url_for('messages.message_detail', message_id=m.id) }}">مشاهده</a>
+                        <form class="inline-form" method="POST"
+                              action="{{ url_for('messages.mark_unread' if m.is_read else 'messages.mark_read', message_id=m.id) }}">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm" type="submit">{{ 'خوانده‌نشده' if m.is_read else 'خوانده شد' }}</button>
+                        </form>
+                        <form class="inline-form" method="POST" action="{{ url_for('messages.delete_message', message_id=m.id) }}"
+                              onsubmit="return confirm('این پیام حذف شود؟');">
+                            {{ ui.csrf() }}
+                            <button class="btn btn-sm btn-danger" type="submit">حذف</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="empty">پیامی در این بخش وجود ندارد.</div>
+    {% endif %}
+</div>
+{% endblock %}

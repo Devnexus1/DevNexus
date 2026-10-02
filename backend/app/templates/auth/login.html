@@ -1,0 +1,32 @@
+{% import 'admin/_macros.html' as ui %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ورود به پنل مدیریت - Dev Nexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+<body>
+<div class="login-wrap">
+    <form class="card login-card" method="POST">
+        {{ ui.csrf() }}
+        <div class="brand"><code>&lt;/&gt;</code>Dev <span>Nexus</span></div>
+        <p class="sub">ورود به پنل مدیریت</p>
+
+        {% if error %}<div class="flash error" style="margin-bottom:14px">{{ error }}</div>{% endif %}
+
+        <div class="field">
+            <label for="username">نام کاربری</label>
+            <input type="text" id="username" name="username" class="ltr" autocomplete="username" required autofocus>
+        </div>
+        <div class="field">
+            <label for="password">رمز عبور</label>
+            <input type="password" id="password" name="password" class="ltr" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">ورود</button>
+    </form>
+</div>
+</body>
+</html>

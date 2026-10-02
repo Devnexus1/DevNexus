@@ -1,0 +1,58 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'messages' %}
+{% block title %}پیام از {{ message.name }}{% endblock %}
+{% block page_title %}پیام از {{ message.name }}{% endblock %}
+{% block head_actions %}
+    <a class="btn" href="{{ url_for('messages.messages') }}">← بازگشت</a>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="detail-row"><span class="k">نام</span><span class="v">{{ message.name }}</span></div>
+    <div class="detail-row"><span class="k">ایمیل</span><span class="v ltr"><a href="mailto:{{ message.email }}">{{ message.email }}</a></span></div>
+    {% if message.phone %}
+    <div class="detail-row"><span class="k">تلفن</span><span class="v ltr"><a href="tel:{{ message.phone }}">{{ message.phone }}</a></span></div>
+    {% endif %}
+    <div class="detail-row"><span class="k">نوع پروژه</span><span class="v">{{ message.project_type|project_type }}</span></div>
+    <div class="detail-row"><span class="k">زمان</span><span class="v ltr">{{ message.created_at|dt }}</span></div>
+    {% if message.ip_address %}
+    <div class="detail-row"><span class="k">آی‌پی</span><span class="v ltr">{{ message.ip_address }}</span></div>
+    {% endif %}
+    <div class="detail-row"><span class="k">وضعیت</span><span class="v">{{ ui.status_pill(message.status) }}</span></div>
+
+    <h2 style="margin-top:22px">متن پیام</h2>
+    <div class="msg-box">{{ message.message }}</div>
+
+    <div class="actions">
+        <a class="btn btn-primary"
+           href="mailto:{{ message.email }}?subject={{ ('پاسخ به پیام شما در Dev Nexus')|urlencode }}">پاسخ با ایمیل</a>
+
+        <form class="inline-form" method="POST"
+              action="{{ url_for('messages.mark_unread' if message.is_read else 'messages.mark_read', message_id=message.id) }}">
+            {{ ui.csrf() }}
+            <button class="btn" type="submit">علامت‌گذاری «{{ 'خوانده‌نشده' if message.is_read else 'خوانده‌شده' }}»</button>
+        </form>
+
+        {% if message.status != 'replied' %}
+        <form class="inline-form" method="POST" action="{{ url_for('messages.mark_replied', message_id=message.id) }}">
+            {{ ui.csrf() }}
+            <button class="btn" type="submit">پاسخ داده شد</button>
+        </form>
+        {% endif %}
+
+        {% if message.status != 'archived' %}
+        <form class="inline-form" method="POST" action="{{ url_for('messages.archive_message', message_id=message.id) }}">
+            {{ ui.csrf() }}
+            <button class="btn" type="submit">آرشیو</button>
+        </form>
+        {% endif %}
+
+        <form class="inline-form" method="POST" action="{{ url_for('messages.delete_message', message_id=message.id) }}"
+              onsubmit="return confirm('این پیام حذف شود؟');">
+            {{ ui.csrf() }}
+            <button class="btn btn-danger" type="submit">حذف</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

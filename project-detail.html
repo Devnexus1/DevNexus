@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Project details by DevNexus - Emad Nourbakhsh, full stack developer.">
+    <meta name="theme-color" content="#050811">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050811'/%3E%3Ctext x='32' y='42' font-size='30' font-family='monospace' font-weight='700' fill='%231597ff' text-anchor='middle'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+
+    <title>Project Details | DevNexus</title>
+
+    <script>
+        /* Apply saved theme/language before first paint (prevents a flash) */
+        (function () {
+            try {
+                var root = document.documentElement;
+                if (localStorage.getItem("devnexusTheme") === "light") {
+                    root.setAttribute("data-theme", "light");
+                }
+                if (localStorage.getItem("devnexusLang") === "fa") {
+                    root.setAttribute("lang", "fa");
+                    root.setAttribute("dir", "rtl");
+                }
+            } catch (error) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/language.css">
+    <link rel="stylesheet" href="css/project-detail.css">
+    <link rel="stylesheet" href="css/light-theme.css">
+    <link rel="stylesheet" href="css/rtl.css">
+    <link rel="stylesheet" href="css/detail-modern.css">
+    <script src="js/language.js" defer></script>
+    <script src="js/project-detail.js" defer></script>
+</head>
+
+<body>
+
+    <!-- =========================
+         PROJECT DETAILS
+    ========================== -->
+
+    <main class="project-details">
+
+        <div class="project-details-container">
+
+            <!-- Back -->
+            <a data-i18n-html="detail.back" href="index.html#projects" class="back-projects">
+                ← Back to Projects
+            </a>
+
+
+            <!-- Project Header -->
+            <div class="project-details-header">
+
+                <span data-i18n="detail.tag">PROJECT DETAILS</span>
+
+                <h1 id="detail-title" data-i18n="detail.name">Car Marketplace</h1>
+
+                <p id="detail-intro" data-i18n="detail.intro">
+                    A modern web-based car buying and selling platform
+                    built with modern technologies.
+                </p>
+
+            </div>
+
+
+            <!-- Project Gallery -->
+            <div class="project-gallery">
+
+                <div class="project-gallery-main">
+
+                    <img
+                        id="project-main-image"
+                        src="image/project-1.webp"
+                        alt="Car Marketplace project screenshot 1"
+                    >
+
+                    <button
+                        class="project-gallery-arrow project-gallery-prev"
+                        type="button"
+                        aria-label="Previous project image"
+                    >
+                        ‹
+                    </button>
+
+                    <button
+                        class="project-gallery-arrow project-gallery-next"
+                        type="button"
+                        aria-label="Next project image"
+                    >
+                        ›
+                    </button>
+
+                    <div class="project-image-counter" id="project-image-counter">
+                        01 / 04
+                    </div>
+
+                </div>
+
+                <div class="project-gallery-thumbs" id="detail-thumbs" aria-label="Project image thumbnails">
+
+                    <button class="project-thumb active" type="button" aria-label="Show project image 1">
+                        <img src="image/project-1.webp" alt="Project thumbnail 1">
+                    </button>
+
+                    <button class="project-thumb" type="button" aria-label="Show project image 2">
+                        <img src="image/project-2.webp" alt="Project thumbnail 2" loading="lazy" decoding="async">
+                    </button>
+
+                    <button class="project-thumb" type="button" aria-label="Show project image 3">
+                        <img src="image/project-3.webp" alt="Project thumbnail 3" loading="lazy" decoding="async">
+                    </button>
+
+                    <button class="project-thumb" type="button" aria-label="Show project image 4">
+                        <img src="image/project-4.webp" alt="Project thumbnail 4" loading="lazy" decoding="async">
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Project Information -->
+            <div class="project-details-content">
+
+                <!-- Description -->
+                <div class="project-description" id="detail-description">
+
+                    <span data-i18n="detail.aboutTag">ABOUT THIS PROJECT</span>
+
+                    <h2 id="detail-title-2" data-i18n="detail.name">Car Marketplace</h2>
+
+                    <p data-i18n="detail.p1">
+                        This project is a web-based platform designed
+                        for buying and selling cars. Users can browse
+                        available cars, view detailed information and
+                        manage their listings.
+                    </p>
+
+                    <p data-i18n="detail.p2">
+                        The platform is designed with a modern interface
+                        and a structured backend to provide a smooth
+                        experience for users.
+                    </p>
+
+                </div>
+
+
+                <aside class="project-aside">
+
+                <!-- Technologies -->
+                <div class="project-details-tech">
+
+                    <span data-i18n="detail.tech">TECHNOLOGIES</span>
+
+                    <div class="tech-list" id="detail-tech">
+
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>MySQL</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="project-details-links" id="detail-links">
+
+                    <a data-i18n-html="detail.github" id="detail-github" href="#" class="project-detail-btn">
+                        GitHub
+                        <span>→</span>
+                    </a>
+
+                    <a data-i18n-html="detail.live" id="detail-live" href="#" class="project-detail-btn">
+                        Live Demo
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+                </aside>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'dashboard' %}
+{% block title %}داشبورد{% endblock %}
+{% block page_title %}داشبورد{% endblock %}
+
+{% block content %}
+<div class="stats">
+    <div class="stat"><b>{{ stats.published_projects }}</b><span>پروژه‌ی منتشرشده</span></div>
+    <div class="stat"><b>{{ stats.total_messages }}</b><span>کل پیام‌ها</span></div>
+    <div class="stat"><b>{{ stats.unread_messages }}</b><span>پیام خوانده‌نشده</span></div>
+    <div class="stat {{ '' if stats.has_resume else 'muted' }}"><b>{{ '✓' if stats.has_resume else '✗' }}</b><span>رزومه‌ی فعال</span></div>
+</div>
+
+<div class="dash-grid">
+    <div class="card latest">
+        <h2>آخرین پیام‌ها</h2>
+        {% if latest_messages %}
+        <ul>
+            {% for m in latest_messages %}
+            <li>
+                <a class="row {{ 'unread' if not m.is_read }}" href="{{ url_for('messages.message_detail', message_id=m.id) }}">
+                    <strong>{{ m.name }}</strong>
+                    <span dir="ltr">{{ m.created_at|dt }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a class="more" href="{{ url_for('messages.messages') }}">همه‌ی پیام‌ها ←</a>
+        {% else %}
+        <div class="empty">هنوز پیامی دریافت نشده است.</div>
+        {% endif %}
+    </div>
+
+    <div class="card">
+        <h2>وضعیت اعلان پیام جدید</h2>
+        <div class="channel-row">
+            <span>ایمیل:</span>
+            <span class="pill {{ 'ok' if channels.email else 'off' }}">{{ 'فعال' if channels.email else 'غیرفعال' }}</span>
+        </div>
+        <div class="channel-row">
+            <span>پیامک (کاوه‌نگار):</span>
+            <span class="pill {{ 'ok' if channels.sms else 'off' }}">{{ 'فعال' if channels.sms else 'غیرفعال' }}</span>
+            <span>تلگرام:</span>
+            <span class="pill {{ 'ok' if channels.telegram else 'off' }}">{{ 'فعال' if channels.telegram else 'غیرفعال' }}</span>
+        </div>
+        <p class="hint">برای فعال‌سازی، مقادیر را در فایل <span dir="ltr">.env</span> بنویس (راهنما در README).</p>
+    </div>
+</div>
+{% endblock %}

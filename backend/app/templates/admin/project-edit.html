@@ -1,0 +1,130 @@
+{% extends 'admin/base.html' %}
+{% import 'admin/_macros.html' as ui %}
+{% set active = 'projects' %}
+{% block title %}{{ 'ویرایش پروژه' if project else 'پروژه‌ی جدید' }}{% endblock %}
+{% block page_title %}{{ 'ویرایش پروژه' if project else 'پروژه‌ی جدید' }}{% endblock %}
+{% block head_actions %}
+    <a class="btn" href="{{ url_for('projects.projects') }}">← بازگشت به فهرست</a>
+{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data"
+      action="{{ url_for('projects.edit_project', project_id=project.id) if project else url_for('projects.new_project') }}">
+    {{ ui.csrf() }}
+
+    <div class="card">
+        <h2>عنوان و توضیح کوتاه (روی کارت پروژه)</h2>
+        <div class="form-row">
+            <div class="field">
+                <label for="title_fa">عنوان (فارسی)</label>
+                <input type="text" id="title_fa" name="title_fa" value="{{ data.title_fa }}">
+            </div>
+            <div class="field">
+                <label for="title_en">عنوان (English) *</label>
+                <input type="text" id="title_en" name="title_en" class="ltr" value="{{ data.title_en }}" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="short_description_fa">توضیح کوتاه (فارسی)</label>
+                <textarea id="short_description_fa" name="short_description_fa" rows="3">{{ data.short_description_fa }}</textarea>
+            </div>
+            <div class="field">
+                <label for="short_description_en">توضیح کوتاه (English)</label>
+                <textarea id="short_description_en" name="short_description_en" class="ltr" rows="3">{{ data.short_description_en }}</textarea>
+            </div>
+        </div>
+        <p class="hint">اگر متن فارسی را خالی بگذاری، در حالت فارسی همان متن انگلیسی نشان داده می‌شود.</p>
+    </div>
+
+    <div class="card">
+        <h2>توضیح کامل (صفحه‌ی جزئیات پروژه)</h2>
+        <div class="form-row">
+            <div class="field">
+                <label for="description_fa">توضیح کامل (فارسی)</label>
+                <textarea id="description_fa" name="description_fa" rows="6">{{ data.description_fa }}</textarea>
+            </div>
+            <div class="field">
+                <label for="description_en">توضیح کامل (English)</label>
+                <textarea id="description_en" name="description_en" class="ltr" rows="6">{{ data.description_en }}</textarea>
+            </div>
+        </div>
+        <p class="hint">بین هر دو پاراگراف یک خط خالی بگذار.</p>
+    </div>
+
+    <div class="card">
+        <h2>تکنولوژی‌ها و لینک‌ها</h2>
+        <div class="form-row single">
+            <div class="field">
+                <label for="technologies">تکنولوژی‌ها (با کاما جدا کن)</label>
+                <input type="text" id="technologies" name="technologies" class="ltr"
+                       placeholder="HTML, CSS, JavaScript, Python, Flask, MySQL" value="{{ data.technologies }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="field">
+                <label for="live_demo_url">لینک دمو (Live Demo)</label>
+                <input type="url" id="live_demo_url" name="live_demo_url" class="ltr" placeholder="https://" value="{{ data.live_demo_url }}">
+            </div>
+            <div class="field">
+                <label for="github_url">لینک GitHub</label>
+                <input type="url" id="github_url" name="github_url" class="ltr" placeholder="https://" value="{{ data.github_url }}">
+            </div>
+        </div>
+        <div class="form-row single">
+            <div class="field">
+                <label for="display_order">ترتیب نمایش (عدد کوچک‌تر = زودتر)</label>
+                <input type="number" id="display_order" name="display_order" min="0" value="{{ data.display_order }}">
+            </div>
+        </div>
+        <label class="check">
+            <input type="checkbox" name="is_published" {{ 'checked' if data.is_published }}>
+            منتشر شود (در سایت دیده شود)
+        </label>
+    </div>
+
+    <div class="card">
+        <h2>افزودن تصویر جدید</h2>
+        <input type="file" name="project_images" accept="image/png,image/jpeg,image/webp" multiple>
+        <p class="hint">JPG / PNG / WEBP، هر تصویر حداکثر ۸ مگابایت، تا ۱۲ تصویر. اولین تصویر، کاور پروژه است.</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" style="margin-bottom:18px">
+        {{ 'ذخیره‌ی تغییرات' if project else 'افزودن پروژه' }}
+    </button>
+</form>
+
+{# فرم‌های مدیریت تصاویر باید بیرون از فرم اصلی باشند (فرم تو در تو در HTML معتبر نیست) #}
+{% if project %}
+<div class="card">
+    <h2>تصاویر فعلی</h2>
+    {% if images %}
+    <div class="images-grid">
+        {% for image in images %}
+        <div class="img-card">
+            <img src="{{ url_for('api.project_image', filename=image.filename) }}" alt="{{ image.alt_text or '' }}">
+            {% if image.is_primary %}<span class="cover-label">✓ تصویر اصلی (کاور)</span>{% endif %}
+            <div class="actions">
+                {% if not image.is_primary %}
+                <form class="inline-form" method="POST"
+                      action="{{ url_for('projects.set_primary_image', project_id=project.id, image_id=image.id) }}">
+                    {{ ui.csrf() }}
+                    <button type="submit" class="btn btn-sm">کاور کن</button>
+                </form>
+                {% endif %}
+                <form class="inline-form" method="POST"
+                      action="{{ url_for('projects.delete_image', project_id=project.id, image_id=image.id) }}"
+                      onsubmit="return confirm('این تصویر حذف شود؟');">
+                    {{ ui.csrf() }}
+                    <button type="submit" class="btn btn-sm btn-danger">حذف</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="empty">هنوز تصویری برای این پروژه ثبت نشده است.</div>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}
